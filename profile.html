@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Profile Page</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">My Website</a>
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="profile.html">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="achievements.html">Achievements</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="interests.html">Interests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="container">
+        <div class="profile-header">
+            <h1>Profile</h1>
+            <h2>ARAVINTH KARTHIC K</h2>
+            <p>Email: geethakumaresan01@example.com | Phone: (123) 456-7890</p>
+            <p>Location: SALEM, INDIA</p>
+        </div>
+
+        <div class="key-details mb-4">
+            <h3>Key Details</h3>
+            <ul>
+                <li>Basic Full Stack Developer</li>
+                <li>Basic JavaScript Programmer</li>
+                <li>Passionate about building scalable web applications</li>
+            </ul>
+        </div>
+
+        <div class="strengths mb-4">
+            <h3>Strengths</h3>
+            <ul>
+                <li>Problem Solving</li>
+                <li>Team Collaboration</li>
+                <li>Adaptability</li>
+                <li>Continuous Learning</li>
+            </ul>
+        </div>
+
+        <div class="skills mb-4">
+            <h3>Skills</h3>
+            <div class="skill-bar" data-skill="90">
+                <div class="skill-bar-fill"><span class="skill-label">JavaScript</span></div>
+            </div>
+            <div class="skill-bar" data-skill="85">
+                <div class="skill-bar-fill"><span class="skill-label">Bootstrap</span></div>
+            </div>
+            <div class="skill-bar" data-skill="80">
+                <div class="skill-bar-fill"><span class="skill-label">React</span></div>
+            </div>
+        </div>
+
+        <div class="download-btn">
+            <button id="downloadProfile" class="btn btn-primary">Download Profile</button>
+        </div>
+    </div>
+
+    <script>
+        // Animate skill bars on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const skillBars = document.querySelectorAll('.skill-bar');
+            skillBars.forEach(bar => {
+                const fill = bar.querySelector('.skill-bar-fill');
+                const skillPercent = bar.getAttribute('data-skill');
+                setTimeout(() => {
+                    fill.style.width = skillPercent + '%';
+                }, 100);
+            });
+        });
+
+        // Download profile as HTML file
+        document.getElementById('downloadProfile').addEventListener('click', () => {
+            const profileContent = document.documentElement.outerHTML;
+            const blob = new Blob([profileContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'profile.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+    </script>
+</body>
+</html>
